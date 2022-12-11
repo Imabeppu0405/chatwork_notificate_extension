@@ -1,6 +1,5 @@
 {
-    "name": "My Extension",
-    "description": "My Extension",
+    "name": "Chatwork Notification",
     "version": "0.0.1",
     "manifest_version": 3,
     "permissions":[
@@ -11,9 +10,7 @@
           "https://www.chatwork.com/*",
           "https://kcw.kddi.ne.jp/*"
         ],
-        "js": [
-          "background.js"
-        ],
+        "js": ["background.js"],
         "run_at": "document_end"
     }]
   }
