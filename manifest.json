@@ -1,0 +1,19 @@
+{
+    "name": "My Extension",
+    "description": "My Extension",
+    "version": "0.0.1",
+    "manifest_version": 3,
+    "permissions":[
+      "storage"
+    ],
+    "content_scripts": [{
+        "matches": [
+          "https://www.chatwork.com/*",
+          "https://kcw.kddi.ne.jp/*"
+        ],
+        "js": [
+          "background.js"
+        ],
+        "run_at": "document_end"
+    }]
+  }
