@@ -33,7 +33,9 @@ window.addEventListener('load', () => {
  */
 const NotificationObserver = new MutationObserver(records => {
     //  要素追加（1つ目の通知）、文字データ変更（2つ目以降の通知）の場合通知
-    if(records[0].removedNodes.length === 0) {
+    isAddNotification = records[0].type === 'characterData';
+    isNotMentioned = records[0].addedNodes.length > 0 && typeof records[0].addedNodes[0].firstChild.dataset.testid === 'undefined';
+    if(isAddNotification || isNotMentioned ) {
         const roomName = records[0].target.parentElement.closest('li[role="listitem"]').getAttribute('aria-label');
         new Notification(roomName);
     }
@@ -76,7 +78,7 @@ const Settingobserver = new MutationObserver(records => {
     const addedNode = records[0].addedNodes[0];
     // 変更が要素の追加かつ、追加された要素に「グループチャットの設定」という文字列があれば、、、
     if(addedNode && addedNode.innerText.substring(0,11) === 'グループチャットの設定') {
-        const roomId = addedNode.baseURI.slice(-9);
+        const roomId = addedNode.baseURI.slice(-9).replace(/[^0-9]/g, "");
         appendEditElement(roomId);
         setUpdateEvent(roomId);
     };
